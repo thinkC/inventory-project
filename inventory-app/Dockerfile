@@ -1,5 +1,5 @@
-# Use the official Node.js image as the base image
-FROM node:14 as build
+# Use a lightweight Node.js 18 base image for building
+FROM node:18-alpine as build
 
 # Set the working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --verbose
 
 # Copy the rest of the application files to the working directory
 COPY . .
