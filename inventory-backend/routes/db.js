@@ -1,47 +1,47 @@
-// const mysql = require('mysql2');
+const mysql = require('mysql2');
 
-// const pool = mysql.createPool({
-//   host: '127.0.0.1',
+const pool = mysql.createPool({
+  host: '127.0.0.1',
+  user: 'root',
+  password: '',
+  database: 'inventory',
+  connectionLimit: 10, // Adjust as needed
+});
+
+
+pool.execute('SELECT 1', (err) => {
+    if (err) {
+      console.error('Error connecting to the database:', err);
+      return;
+    }
+    console.log('Database connection established successfully!');
+  });
+
+module.exports = pool.promise();
+
+
+
+
+
+
+// const mysql = require('mysql');
+// const connection = mysql.createConnection({
+//   host: 'localhost',
 //   user: 'root',
-//   password: '',
-//   database: 'inventory',
-//   connectionLimit: 10, // Adjust as needed
+//   password: 'P@ssw0rd',
+//   database: 'inventory'
+  
 // });
 
+// connection.connect((err) => {
+//   if (err) {
+//    console.error('Error connecting to the database:', err);
+//     return;
+//   }
+//   console.log('Database connection established successfully!');
+// });
 
-// pool.execute('SELECT 1', (err) => {
-//     if (err) {
-//       console.error('Error connecting to the database:', err);
-//       return;
-//     }
-//     console.log('Database connection established successfully!');
-//   });
-
-// module.exports = pool.promise();
-
-
-
-
-
-
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'P@ssw0rd',
-  database: 'inventory'
-  
-});
-
-connection.connect((err) => {
-  if (err) {
-   console.error('Error connecting to the database:', err);
-    return;
-  }
-  console.log('Database connection established successfully!');
-});
-
-module.exports = connection;
+// module.exports = connection;
 
 
 // const sql = require('mssql');
